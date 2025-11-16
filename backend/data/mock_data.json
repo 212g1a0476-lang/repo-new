@@ -1,0 +1,31 @@
+{
+  "responses": [
+    {
+      "intent": "sales_report",
+      "title": "Monthly Sales Summary",
+      "description": "This table summarizes monthly sales across regions.",
+      "table": {
+        "columns": ["Region", "Product", "Units Sold", "Revenue"],
+        "rows": [
+          ["North", "Widget A", 120, 2400.5],
+          ["South", "Widget B", 80, 1600],
+          ["East", "Widget A", 200, 4000],
+          ["West", "Widget C", 50, 1250]
+        ]
+      }
+    },
+    {
+      "intent": "inventory",
+      "title": "Inventory Status",
+      "description": "Current inventory for top products, reorder suggested if qty < 60.",
+      "table": {
+        "columns": ["SKU", "Name", "Stock", "Reorder Level"],
+        "rows": [
+          ["SKU-001", "Widget A", 200, 100],
+          ["SKU-002", "Widget B", 45, 60],
+          ["SKU-003", "Widget C", 75, 50]
+        ]
+      }
+    }
+  ]
+}

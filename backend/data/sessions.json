@@ -1,0 +1,99 @@
+[
+  {
+    "id": "0423bb83-0f1f-4ec5-81c5-bc46227162ab",
+    "title": "Monthly Sales Summary",
+    "createdAt": "2025-11-16T09:07:45.848Z",
+    "messages": [
+      {
+        "id": "f582d1bc-004d-4c30-98f8-99cb9e9a4fa0",
+        "question": "hi",
+        "responseTitle": "Monthly Sales Summary",
+        "responseDescription": "This table summarizes monthly sales across regions.",
+        "table": {
+          "columns": [
+            "Region",
+            "Product",
+            "Units Sold",
+            "Revenue"
+          ],
+          "rows": [
+            [
+              "North",
+              "Widget A",
+              120,
+              2400.5
+            ],
+            [
+              "South",
+              "Widget B",
+              80,
+              1600
+            ],
+            [
+              "East",
+              "Widget A",
+              200,
+              4000
+            ],
+            [
+              "West",
+              "Widget C",
+              50,
+              1250
+            ]
+          ]
+        },
+        "createdAt": "2025-11-16T09:07:52.933Z",
+        "feedback": {
+          "likes": 0,
+          "dislikes": 0
+        }
+      },
+      {
+        "id": "f9a078c0-0692-4d33-9d56-acfbf7ce73f8",
+        "question": "mahesh",
+        "responseTitle": "Monthly Sales Summary",
+        "responseDescription": "This table summarizes monthly sales across regions.",
+        "table": {
+          "columns": [
+            "Region",
+            "Product",
+            "Units Sold",
+            "Revenue"
+          ],
+          "rows": [
+            [
+              "North",
+              "Widget A",
+              120,
+              2400.5
+            ],
+            [
+              "South",
+              "Widget B",
+              80,
+              1600
+            ],
+            [
+              "East",
+              "Widget A",
+              200,
+              4000
+            ],
+            [
+              "West",
+              "Widget C",
+              50,
+              1250
+            ]
+          ]
+        },
+        "createdAt": "2025-11-16T09:08:12.022Z",
+        "feedback": {
+          "likes": 0,
+          "dislikes": 0
+        }
+      }
+    ]
+  }
+]
