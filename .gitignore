@@ -9,3 +9,4 @@ backend/data/*.sqlite
 backend/data/*.sqlite-journal
 backend/data/write-test.txt
 frontend/.vite/
+.vercel
