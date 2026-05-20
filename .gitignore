@@ -1,3 +1,11 @@
-node_modules/ 
-backend/node_modules/ 
-frontend-cra/node_modules/ 
+node_modules/
+dist/
+.env
+*.log
+.dev-server.pid
+project_requirements_extracted.txt
+backend/data/restaurant.sqlite
+backend/data/*.sqlite
+backend/data/*.sqlite-journal
+backend/data/write-test.txt
+frontend/.vite/

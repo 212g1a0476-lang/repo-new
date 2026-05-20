@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: restaurant-system-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.19.0
+      - key: PORT
+        value: 10000
+      - key: TAX_RATE
+        value: 0.05
+      - key: DATABASE_PATH
+        value: /var/data/restaurant.sqlite
+    disk:
+      name: restaurant-sqlite-data
+      mountPath: /var/data
+      sizeGB: 1

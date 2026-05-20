@@ -1,0 +1,16 @@
+{
+  "name": "restaurant-reservation-order-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Restaurant table reservation and order management system with React, Express, and SQLite.",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix backend && npm install --prefix frontend",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix frontend\"",
+    "start": "npm run start --prefix backend",
+    "seed": "npm run seed --prefix backend",
+    "build": "npm run build --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
