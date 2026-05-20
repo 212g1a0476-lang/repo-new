@@ -425,6 +425,10 @@ app.use((error, _req, res, _next) => {
   res.status(status).json({ message: error.message || "Unexpected server error." });
 });
 
-app.listen(port, () => {
-  console.log(`Restaurant API running at http://localhost:${port}`);
-});
+if (process.env.VERCEL !== "1") {
+  app.listen(port, () => {
+    console.log(`Restaurant API running at http://localhost:${port}`);
+  });
+}
+
+export default app;

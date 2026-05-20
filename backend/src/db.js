@@ -1,11 +1,14 @@
 import { mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
+import { tmpdir } from "node:os";
 import { fileURLToPath } from "node:url";
 import { DatabaseSync } from "node:sqlite";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const defaultDataDir = join(
-  process.env.LOCALAPPDATA || process.env.TEMP || join(__dirname, "..", "data"),
+  process.env.VERCEL === "1"
+    ? tmpdir()
+    : process.env.LOCALAPPDATA || process.env.TEMP || join(__dirname, "..", "data"),
   "restaurant-reservation-order-system"
 );
 const databasePath = process.env.DATABASE_PATH || join(defaultDataDir, "restaurant.sqlite");
