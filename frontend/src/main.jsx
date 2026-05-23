@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:4000/api";
+const API_URL = import.meta.env.VITE_API_URL || "https://backend-tau-blush-47.vercel.app/api";
 const tabs = ["Dashboard", "Reservations", "Orders", "Kitchen", "Menu", "Billing", "Reports"];
 const reservationStatuses = ["Pending", "Confirmed", "Seated", "Completed", "Cancelled"];
 const orderStatuses = ["Placed", "Preparing", "Served", "Completed", "Cancelled"];
