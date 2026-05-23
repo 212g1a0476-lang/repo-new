@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import "./styles.css";
 
 const API_URL = import.meta.env.VITE_API_URL || "https://backend-tau-blush-47.vercel.app/api";
+const LOCAL_RESERVATIONS_KEY = "tablecraft_local_reservations";
 const tabs = ["Dashboard", "Reservations", "Orders", "Kitchen", "Menu", "Billing", "Reports"];
 const reservationStatuses = ["Pending", "Confirmed", "Seated", "Completed", "Cancelled"];
 const orderStatuses = ["Placed", "Preparing", "Served", "Completed", "Cancelled"];
@@ -15,6 +16,24 @@ async function api(path, options = {}) {
   const data = await response.json().catch(() => null);
   if (!response.ok) throw new Error(data?.message || "Request failed");
   return data;
+}
+
+function readLocalReservations() {
+  try {
+    return JSON.parse(localStorage.getItem(LOCAL_RESERVATIONS_KEY) || "[]");
+  } catch {
+    return [];
+  }
+}
+
+function saveLocalReservation(reservation) {
+  try {
+    const saved = readLocalReservations();
+    const next = [reservation, ...saved.filter((item) => item.local_id !== reservation.local_id)];
+    localStorage.setItem(LOCAL_RESERVATIONS_KEY, JSON.stringify(next.slice(0, 20)));
+  } catch {
+    // Storage can be blocked in some browser modes; the API result is still valid.
+  }
 }
 
 function formatMoney(value) {
@@ -61,7 +80,10 @@ function App() {
         api("/orders"),
         api("/reports/service")
       ]);
-      setData({ summary, tables, customers, menu, reservations, orders, reports });
+      const localReservations = readLocalReservations().filter(
+        (local) => !reservations.some((reservation) => reservation.id === local.id)
+      );
+      setData({ summary, tables, customers, menu, reservations: [...localReservations, ...reservations], orders, reports });
     } catch (err) {
       setError(err.message);
     } finally {
@@ -73,7 +95,20 @@ function App() {
     setError("");
     setNotice("");
     try {
-      await api(path, { method, body: JSON.stringify(body) });
+      const result = await api(path, { method, body: JSON.stringify(body) });
+      if (path === "/reservations" && method === "POST") {
+        const selectedTable = data.tables.find((table) => String(table.id) === String(body.table_id));
+        const reservation = {
+          ...result,
+          local_id: `local-${Date.now()}`,
+          customer_name: body.customer_name,
+          customer_phone: body.customer_phone,
+          customer_email: body.customer_email || "",
+          table_label: selectedTable?.label || `Table ${body.table_id}`,
+          capacity: selectedTable?.capacity || body.party_size
+        };
+        saveLocalReservation(reservation);
+      }
       setNotice(message);
       await load();
     } catch (err) {
